@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "echoserver.fullname" . }}
+  labels:
+        {{- include "echoserver.labels" . | nindent 4 }}
+  namespace: {{ include "echoserver.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ include "echoserver.fullname" . }}
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "echoserver.fullname" . }}
+    spec:
+      containers:
+        - image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: Always
+          name: {{ include "echoserver.fullname" . }}
+          ports:
+            - containerPort: 8080

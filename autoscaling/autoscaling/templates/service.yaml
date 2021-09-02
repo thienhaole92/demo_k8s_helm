@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "autoscaling.fullname" . }}
+  labels:
+  {{- include "autoscaling.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: 3000
+  selector:
+  {{- include "autoscaling.selectorLabels" . | nindent 4 }}
