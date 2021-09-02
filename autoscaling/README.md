@@ -3,6 +3,10 @@
 ```
 helm upgrade --install nodejs-test ./autoscaling --namespace autoscaling --create-namespace --wait
 ```
+## Destroy the application
+```
+helm uninstall nodejs-test ./autoscaling --namespace autoscaling
+```
 
 ## Test the application deployment:
 - Check if application has working loadbalancer `hostname` or `ip` -> `curl <HOSTNAME|IP>:<PORT>`
