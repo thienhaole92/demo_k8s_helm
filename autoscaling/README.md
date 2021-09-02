@@ -11,7 +11,7 @@ helm uninstall nodejs-test ./autoscaling --namespace autoscaling
 ## Test the application deployment:
 - Check if application has working loadbalancer `hostname` or `ip` -> `curl <HOSTNAME|IP>:<PORT>`
 - Open new window in terminal and watch HPA -> `kubectl get hpa -n release -w`
-- Open 2/3 terminal window and execute `while true; do curl -s < <HOSTNAME|IP>:<PORT>; done` in both of them to increase the load on service
+- Open 2/3 terminal window and execute `while true; do curl -s <HOSTNAME|IP>:<PORT>; done` in both of them to increase the load on service
 - In few seconds you will notice that replicas has increased for the nodejs-test deployment because of HPA
 
 ## Result/Output
